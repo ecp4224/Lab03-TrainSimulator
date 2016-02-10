@@ -7,7 +7,7 @@ public class Passenger {
 
     private int passengerID;
     private Station currentStation;
-    private Station nextStation;
+    private Station destinationStation;
     private Train currentTrain;
 
     public Passenger() {
@@ -28,8 +28,8 @@ public class Passenger {
         return currentStation;
     }
 
-    public Station getNextStation() {
-        return nextStation;
+    public Station getDestinationStation() {
+        return destinationStation;
     }
 
     public Train getCurrentTrain() {
