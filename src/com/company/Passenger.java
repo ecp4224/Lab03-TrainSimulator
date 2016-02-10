@@ -3,7 +3,7 @@ package com.company;
 /**
  * Created by corpa on 2/10/2016.
  */
-public class Passenger {
+public class Passenger implements PassengerInterface{
 
     private int passengerID;
     private Station currentStation;

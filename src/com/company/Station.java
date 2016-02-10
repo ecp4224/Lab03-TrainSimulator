@@ -3,7 +3,7 @@ package com.company;
 /**
  * Created by corpa on 2/10/2016.
  */
-public class Station {
+public class Station implements StationInterface{
 
     private String name;
     private Train currentTrain;

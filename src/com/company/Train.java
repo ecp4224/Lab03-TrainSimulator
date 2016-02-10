@@ -5,7 +5,7 @@ import java.util.ArrayList;
 /**
  * Created by corpa on 2/10/2016.
  */
-public class Train {
+public class Train implements TrainInterface{
 
     private ArrayList<Passenger> passengers = new ArrayList<>();
     private TrainRoute route = new TrainRoute();
