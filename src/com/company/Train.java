@@ -2,10 +2,7 @@ package com.company;
 
 import java.util.ArrayList;
 
-/**
- * Created by corpa on 2/10/2016.
- */
-public class Train implements TrainInterface{
+public class Train implements TrainInterface {
 
     private ArrayList<Passenger> passengers = new ArrayList<Passenger>();
     //private TrainRoute route = new Train();
@@ -15,12 +12,14 @@ public class Train implements TrainInterface{
 
     private int numberOfPassengers;//Number of passengers in train Currently
     private int capacity;//Number of passengers allowed in train
+    private TrainRoute route;
 
-    public Train(Station currentStation, int capacity) {
+    public Train(Station currentStation, int capacity, TrainRoute route) {
         this.currentStation = currentStation;
+        this.route = route;
         this.capacity = capacity;
         numberOfPassengers = 0;
-        nextStation = route.getNextStation(currentStation);//TODO EDDIE
+        nextStation = route.nextStation();
     }
 
     public ArrayList<Passenger> getPassengers() {
@@ -63,4 +62,8 @@ public class Train implements TrainInterface{
         return (this.numberOfPassengers == this.capacity);
     }
 
+    @Override
+    public void tick() {
+
+    }
 }

@@ -11,8 +11,10 @@ public class Station implements StationInterface{
     private Queue<Passenger> trainLine;
 
 
-    public Station() {
-
+    public Station(String name, boolean isInbound) {
+        this.name = name;
+        this.isInbound = isInbound;
+        this.trainLine = new Queue<>();
     }
 
     public String getName() {
@@ -43,4 +45,27 @@ public class Station implements StationInterface{
         return trainLine;
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Station station = (Station) o;
+
+        if (isInbound != station.isInbound) return false;
+        if (!name.equals(station.name)) return false;
+        if (currentTrain != null ? !currentTrain.equals(station.currentTrain) : station.currentTrain != null)
+            return false;
+        return trainLine.equals(station.trainLine);
+
+    }
+
+    @Override
+    public int hashCode() {
+        int result = name.hashCode();
+        result = 31 * result + (currentTrain != null ? currentTrain.hashCode() : 0);
+        result = 31 * result + (isInbound ? 1 : 0);
+        result = 31 * result + trainLine.hashCode();
+        return result;
+    }
 }

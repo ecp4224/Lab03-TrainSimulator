@@ -1,11 +1,10 @@
 package com.company;
 
+import com.company.driver.Tickable;
+
 import java.util.ArrayList;
 
-/**
- * Created by corpa on 2/10/2016.
- */
-public interface TrainInterface {
+public interface TrainInterface extends Tickable {
 
     public ArrayList<Passenger> getPassengers();
 
