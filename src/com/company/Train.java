@@ -51,7 +51,7 @@ public class Train implements TrainInterface {
         while(!isFull()) {
             //This check isn't needed. A passenger will always eventually reach their destination station
             //if(currentStation.getTrainLine().getFront().getDestinationStation().getName().equals(currentStation.getName())) {
-            currentStation.getTrainLine().dequeue();
+            passengers.add(currentStation.getTrainLine().dequeue());
             numberOfPassengers++;
             amountPickedUp++;
             //}
