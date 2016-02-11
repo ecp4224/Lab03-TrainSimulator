@@ -12,7 +12,7 @@ public class SimpleTrainRoute implements TrainRoute {
     public SimpleTrainRoute(TrainRouteBuilder builder, Station startingStation, boolean isOutbound) {
         Station[] stations = (isOutbound ? builder.buildOutbound() : builder.buildInbound());
 
-        this.stations = new Queue<>();
+        this.stations = new Queue<Station>();
 
         int startingIndex = 0;
         boolean build = false;
