@@ -12,6 +12,7 @@ public class SimpleTrainRoute implements TrainRoute {
 
     public SimpleTrainRoute(TrainRouteBuilder builder, int startingStation, boolean isOutbound) {
         isGoingOutbound = isOutbound;
+        this.builder = builder;
         build(isOutbound, startingStation);
     }
 

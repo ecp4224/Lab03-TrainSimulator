@@ -3,6 +3,7 @@ package com.company;
 import com.company.driver.SimulationTicker;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Random;
 
@@ -26,7 +27,9 @@ public class TrainRouteBuilder {
         return this;
     }
 
-    public void createStations() {
+    public List<Station> createStations() {
+        List<Station> _stations = new ArrayList<>();
+
         for (int i = 0; i < stations.size(); i++) {
             TrainRoute inBoundRoute = new SimpleTrainRoute(this, i, false);
             TrainRoute outBoundRoute = new SimpleTrainRoute(this, i, true);
@@ -42,7 +45,12 @@ public class TrainRouteBuilder {
 
             ticker.addTickable(inBoundTrain);
             ticker.addTickable(outBoundTrain);
+
+            _stations.add(inboundStation);
+            _stations.add(outboundStation);
         }
+
+        return Collections.unmodifiableList(_stations);
     }
 
     public Station[] buildInbound() {
@@ -57,7 +65,7 @@ public class TrainRouteBuilder {
     public Station[] buildOutbound() {
         Station[] toReturn = new Station[stations.size()];
         for (int i = stations.size() - 1; i >= 0; i--) {
-            toReturn[i] = new Station(stations.get(i), false);
+            toReturn[toReturn.length - 1 - i] = new Station(stations.get(i), false);
         }
 
         return toReturn;
