@@ -22,7 +22,7 @@ public class TrainRouteBuilder {
     }
 
     public Station[] buildInbound() {
-
+        
     }
 
     public Station[] buildOutbound() {
