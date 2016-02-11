@@ -11,6 +11,8 @@ public class Main {
                 .addStation("A")
                 .addStation("B")
                 .addStation("C")
+                .addInboundStation("D")
+                .addOutboundStation("E")
                 .createStations();
     }
 }
