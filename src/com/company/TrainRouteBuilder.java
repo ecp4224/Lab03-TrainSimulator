@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class TrainRouteBuilder {
-    private List<String> stations = new ArrayList<>();
+    private List<String> stations = new ArrayList<String>();
 
     private TrainRouteBuilder() { }
 

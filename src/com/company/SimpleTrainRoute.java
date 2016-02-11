@@ -10,23 +10,20 @@ public class SimpleTrainRoute implements TrainRoute {
     private TrainRouteBuilder builder;
     private boolean isGoingOutbound;
 
-    public SimpleTrainRoute(TrainRouteBuilder builder, Station startingStation, boolean isOutbound) {
+    public SimpleTrainRoute(TrainRouteBuilder builder, int startingStation, boolean isOutbound) {
         isGoingOutbound = isOutbound;
         build(isOutbound, startingStation);
     }
 
-    private void build(boolean isOutbound, Station startingStation) {
+    private void build(boolean isOutbound, int startingStation) {
         Station[] stations = (isOutbound ? builder.buildOutbound() : builder.buildInbound());
 
-        if (startingStation == null)
-            startingStation = stations[0];
-
-        this.stations = new Queue<>();
+        this.stations = new Queue<Station>();
 
         int startingIndex = 0;
         boolean build = false;
         for (; startingIndex < stations.length; startingIndex++) {
-            if (stations[startingIndex] == startingStation) {
+            if (startingIndex == startingStation) {
                 build = true;
             }
 
@@ -54,6 +51,6 @@ public class SimpleTrainRoute implements TrainRoute {
     @Override
     public void switchRoute() {
         isGoingOutbound = !isGoingOutbound;
-        build(isGoingOutbound, null);
+        build(isGoingOutbound, 0);
     }
 }
