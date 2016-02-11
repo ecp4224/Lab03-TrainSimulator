@@ -10,11 +10,15 @@ public class TrainRouteBuilder {
     private static final Random RANDOM = new Random();
 
     private List<String> stations = new ArrayList<String>();
+    private SimulationTicker ticker;
 
-    private TrainRouteBuilder() { }
+    private TrainRouteBuilder(SimulationTicker ticker) { this.ticker = ticker; }
 
-    public TrainRouteBuilder createBuilder() {
-        return new TrainRouteBuilder();
+    public static TrainRouteBuilder createBuilder(SimulationTicker ticker) {
+        if (ticker == null)
+            throw new IllegalArgumentException("ticker cannot be null!");
+
+        return new TrainRouteBuilder(ticker);
     }
 
     public TrainRouteBuilder addStation(String name) {
@@ -36,8 +40,8 @@ public class TrainRouteBuilder {
             inboundStation.setCurrentTrain(inBoundTrain);
             outboundStation.setCurrentTrain(outBoundTrain);
 
-            SimulationTicker.addTickable(inBoundTrain);
-            SimulationTicker.addTickable(outBoundTrain);
+            ticker.addTickable(inBoundTrain);
+            ticker.addTickable(outBoundTrain);
         }
     }
 

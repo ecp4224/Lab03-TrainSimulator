@@ -5,19 +5,15 @@ import java.util.LinkedList;
 import java.util.List;
 
 public class SimulationTicker {
-    private static List<Tickable> tickables = new LinkedList<>();
+    private List<Tickable> tickables = new LinkedList<>();
 
-    public static void addTickable(Tickable tickable) {
+    public  void addTickable(Tickable tickable) {
         tickables.add(tickable);
     }
 
-    public static void tick() {
+    public void tick() {
         for (Tickable t : tickables) {
             t.tick();
         }
-    }
-
-    public static void main(String[] args) {
-        //TODO Make main
     }
 }
