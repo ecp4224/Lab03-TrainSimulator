@@ -48,12 +48,13 @@ public class Train implements TrainInterface {
 
     public void pickupPassengers() {
         int amountPickedUp = 0;
-        while(!isFull()){
-            if(currentStation.getTrainLine().getFront().getDestinationStation().getName().equals(currentStation.getName())) {
-                currentStation.getTrainLine().dequeue();
-                numberOfPassengers++;
-                amountPickedUp++;
-            }
+        while(!isFull()) {
+            //This check isn't needed. A passenger will always eventually reach their destination station
+            //if(currentStation.getTrainLine().getFront().getDestinationStation().getName().equals(currentStation.getName())) {
+            currentStation.getTrainLine().dequeue();
+            numberOfPassengers++;
+            amountPickedUp++;
+            //}
         }
         System.out.println("Picked up " + amountPickedUp + " passengers at " + currentStation.getName());
     }
