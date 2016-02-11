@@ -44,7 +44,7 @@ public class TrainRouteBuilder {
     }
 
     public List<Station> createStations() {
-        List<Station> _stations = new ArrayList<>();
+        List<Station> _stations = new ArrayList<Station>();
 
         for (int i = 0; i < inBoundStations.size(); i++) {
             TrainRoute inBoundRoute = new SimpleTrainRoute(this, i, false);

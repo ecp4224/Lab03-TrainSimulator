@@ -5,7 +5,7 @@ import java.util.LinkedList;
 import java.util.List;
 
 public class SimulationTicker {
-    private List<Tickable> tickables = new LinkedList<>();
+    private List<Tickable> tickables = new LinkedList<Tickable>();
 
     public  void addTickable(Tickable tickable) {
         tickables.add(tickable);

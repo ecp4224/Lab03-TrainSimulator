@@ -14,7 +14,7 @@ public class Station implements StationInterface{
     public Station(String name, boolean isInbound) {
         this.name = name;
         this.isInbound = isInbound;
-        this.trainLine = new Queue<>();
+        this.trainLine = new Queue<Passenger>();
     }
 
     public String getName() {
