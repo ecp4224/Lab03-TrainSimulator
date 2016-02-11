@@ -8,11 +8,25 @@ public class Main {
         SimulationTicker ticker = new SimulationTicker();
 
         TrainRouteBuilder.createBuilder(ticker)
-                .addStation("A")
-                .addStation("B")
-                .addStation("C")
-                .addInboundStation("D")
-                .addOutboundStation("E")
+                .addOutboundStation("Heath")
+                .addStation("Back of the Hill")
+                .addStation("Riverway")
+                .addStation("Mission Park")
+                .addStation("Fenwood Rd")
+                .addStation("Brigham Circle")
+                .addStation("Longwood Medical Area")
+                .addStation("Northeastern")
+                .addStation("Symphony")
+                .addStation("Prudential")
+                .addStation("Copley")
+                .addStation("Arlington")
+                .addStation("Boylston")
+                .addStation("Park St.")
+                .addStation("Gov Center")
+                .addStation("Haymarket")
+                .addStation("North Station")
+                .addStation("Science Park")
+                .addInboundStation("Lechmere")
                 .createStations();
     }
 }
