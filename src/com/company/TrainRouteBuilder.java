@@ -52,7 +52,7 @@ public class TrainRouteBuilder {
     }
 
     public List<Station> buildStations() {
-        cache = new ArrayList<>();
+        cache = new ArrayList<Station>();
 
         for (int i = 0; i < inBoundStations.size(); i++) {
             TrainRoute inBoundRoute = new SimpleTrainRoute(this, i, false);
