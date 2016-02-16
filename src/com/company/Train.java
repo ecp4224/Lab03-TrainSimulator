@@ -1,6 +1,7 @@
 package com.company;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 
 public class Train implements TrainInterface {
 
@@ -37,13 +38,18 @@ public class Train implements TrainInterface {
 
     public void removePassengers() {
         int amountDroppedOff = 0;
-        for(Passenger p: getPassengers()){
-            if(p.getDestinationStation().equals(currentStation.getName())) {
-                passengers.remove(p);
+
+        //Use iterator to prevent ConcurrentModificationException
+        Iterator<Passenger> iterator = getPassengers().iterator();
+        while (iterator.hasNext()) {
+            Passenger p = iterator.next();
+            if (p.getDestinationStation().equals(currentStation)) {
+                iterator.remove();
                 numberOfPassengers--;
                 amountDroppedOff++;
             }
         }
+
         if (amountDroppedOff > 0)
             System.out.println("Dropped off " + amountDroppedOff + " passengers at " + currentStation.getName());
     }

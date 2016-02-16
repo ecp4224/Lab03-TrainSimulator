@@ -54,6 +54,15 @@ public class TrainRouteBuilder {
     public List<Station> buildStations() {
         cache = new ArrayList<Station>();
 
+        for (String name : inBoundStations) {
+            Station toAdd = new Station(name, true);
+            cache.add(toAdd);
+        }
+        for (String name : outBoundStations) {
+            Station toAdd = new Station(name, false);
+            cache.add(toAdd);
+        }
+
         for (int i = 0; i < inBoundStations.size(); i++) {
             TrainRoute inBoundRoute = new SimpleTrainRoute(this, i, false);
 
@@ -63,7 +72,6 @@ public class TrainRouteBuilder {
             inboundStation.setCurrentTrain(inBoundTrain);
 
             ticker.addTickable(inBoundTrain);
-            cache.add(inboundStation);
         }
 
         for (int i = 0; i < outBoundStations.size(); i++) {
@@ -75,7 +83,6 @@ public class TrainRouteBuilder {
             outboundStation.setCurrentTrain(outBoundTrain);
 
             ticker.addTickable(outBoundTrain);
-            cache.add(outboundStation);
         }
 
         return Collections.unmodifiableList(cache);
