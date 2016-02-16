@@ -15,6 +15,7 @@ public class TrainRouteBuilder {
     //This allows for the possibility of having a station on the inbound side only or outbound side only
     private List<String> inBoundStations = new ArrayList<String>();
     private List<String> outBoundStations = new ArrayList<String>();
+    private List<Station> cache;
 
     private SimulationTicker ticker;
 
@@ -43,8 +44,15 @@ public class TrainRouteBuilder {
         return this;
     }
 
-    public List<Station> createStations() {
-        List<Station> _stations = new ArrayList<>();
+    public List<Station> getAllStations() {
+        if (cache == null)
+            throw new IllegalAccessError("This builder hasn't been built yet!");
+
+        return cache;
+    }
+
+    public List<Station> buildStations() {
+        cache = new ArrayList<>();
 
         for (int i = 0; i < inBoundStations.size(); i++) {
             TrainRoute inBoundRoute = new SimpleTrainRoute(this, i, false);
@@ -55,7 +63,7 @@ public class TrainRouteBuilder {
             inboundStation.setCurrentTrain(inBoundTrain);
 
             ticker.addTickable(inBoundTrain);
-            _stations.add(inboundStation);
+            cache.add(inboundStation);
         }
 
         for (int i = 0; i < outBoundStations.size(); i++) {
@@ -67,10 +75,10 @@ public class TrainRouteBuilder {
             outboundStation.setCurrentTrain(outBoundTrain);
 
             ticker.addTickable(outBoundTrain);
-            _stations.add(outboundStation);
+            cache.add(outboundStation);
         }
 
-        return Collections.unmodifiableList(_stations);
+        return Collections.unmodifiableList(cache);
     }
 
     public Station[] buildInbound() {

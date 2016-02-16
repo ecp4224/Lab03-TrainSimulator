@@ -67,4 +67,8 @@ public class Train implements TrainInterface {
     public void tick() {
 
     }
+
+    public TrainRoute getTrainRoute() {
+        return route;
+    }
 }

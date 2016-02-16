@@ -27,6 +27,6 @@ public class Main {
                 .addStation("North Station")
                 .addStation("Science Park")
                 .addInboundStation("Lechmere")
-                .createStations();
+                .buildStations();
     }
 }

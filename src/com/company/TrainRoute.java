@@ -8,4 +8,6 @@ public interface TrainRoute {
     boolean isEndOfRoute();
 
     void switchRoute();
+
+    Station getRandomStation();
 }

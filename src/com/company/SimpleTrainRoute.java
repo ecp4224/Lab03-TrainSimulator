@@ -1,9 +1,6 @@
 package com.company;
 
-import java.util.ArrayList;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Stack;
+import java.util.*;
 
 public class SimpleTrainRoute implements TrainRoute {
     private Queue<Station> stations;
@@ -53,5 +50,13 @@ public class SimpleTrainRoute implements TrainRoute {
     public void switchRoute() {
         isGoingOutbound = !isGoingOutbound;
         build(isGoingOutbound, 0);
+    }
+
+    @Override
+    public Station getRandomStation() {
+        List<Station> all = builder.getAllStations();
+        Random random = new Random();
+
+        return all.get(random.nextInt(all.size()));
     }
 }

@@ -1,34 +1,28 @@
 package com.company;
 
-/**
- * Created by corpa on 2/10/2016.
- */
 public class Passenger implements PassengerInterface{
 
-    private int passengerID = 0;
+    private int passengerID;
     private Station currentStation;
     private Station destinationStation;
     private Train currentTrain;
 
-    public Passenger(){
-        passengerID++;
-        currentStation = null;
-        destinationStation = null;
-        currentTrain = null;
+    private static int nextPassengerID = 0;
+    public static Passenger createPassenger(Station currentStation) {
+        Station destination = currentStation.getCurrentTrain().getTrainRoute().getRandomStation();
+        nextPassengerID++;
+        return new Passenger(currentStation, destination, nextPassengerID);
     }
 
-    public Passenger(Station currentStation, Station destinationStation){
+    private Passenger(Station currentStation, Station destinationStation, int id){
         this.currentStation = currentStation;
         this.destinationStation = destinationStation;
         currentTrain = null;
-        passengerID++;
+        passengerID = id;
     }
 
     public boolean isOnTrain(){
-        if(currentTrain != null)
-            return true;
-        return false;
-
+        return currentTrain != null;
     }
 
     public void setPassengerID(int passengerID) {
