@@ -1,4 +1,4 @@
-import com.company.Queue;
+/*import com.company.Queue;
 
 import static org.junit.Assert.*;
 
@@ -86,4 +86,4 @@ public class QueueTest {
 
         assertEquals(true, queue.isEmpty());
     }
-}
+}*/

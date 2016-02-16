@@ -7,11 +7,13 @@ import java.util.List;
 import java.util.Random;
 
 public class PassengerCreator implements Tickable {
+
     private static final Random RANDOM = new Random();
     private static final long MIN_WAIT_TIME = 20000;
 
     private List<Station> allStations;
     private long lastAdd;
+
     public PassengerCreator(List<Station> allStations) {
         this.allStations = allStations;
     }

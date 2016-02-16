@@ -1,5 +1,7 @@
 package com.company;
 
+import com.company.driver.PassengerCreator;
+
 import java.util.ArrayList;
 
 public class Train implements TrainInterface {
@@ -12,6 +14,7 @@ public class Train implements TrainInterface {
 
     private int numberOfPassengers;//Number of passengers in train Currently
     private int capacity;//Number of passengers allowed in train
+
     private TrainRoute route;
 
     public Train(Station currentStation, int capacity, TrainRoute route) {
@@ -49,12 +52,9 @@ public class Train implements TrainInterface {
     public void pickupPassengers() {
         int amountPickedUp = 0;
         while(!isFull()) {
-            //This check isn't needed. A passenger will always eventually reach their destination station
-            //if(currentStation.getTrainLine().getFront().getDestinationStation().getName().equals(currentStation.getName())) {
             passengers.add(currentStation.getTrainLine().dequeue());
             numberOfPassengers++;
             amountPickedUp++;
-            //}
         }
         System.out.println("Picked up " + amountPickedUp + " passengers at " + currentStation.getName());
     }
@@ -65,7 +65,12 @@ public class Train implements TrainInterface {
 
     @Override
     public void tick() {
-
+        removePassengers();
+        System.out.print("Train moved from " + currentStation.getName());
+        currentStation = route.gotoNextStation();
+        System.out.print(" to " + currentStation.getName() + ".\n");
+        nextStation = getTrainRoute().nextStation();
+        pickupPassengers();
     }
 
     public TrainRoute getTrainRoute() {
