@@ -68,4 +68,8 @@ public class Station implements StationInterface{
         result = 31 * result + trainLine.hashCode();
         return result;
     }
+
+    public void addPassenger(Passenger p) {
+        trainLine.enqueue(p);
+    }
 }

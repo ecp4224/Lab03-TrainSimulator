@@ -16,4 +16,12 @@ public class SimulationTicker {
             t.tick();
         }
     }
+
+    public void begin(long wait) throws InterruptedException {
+        while (true) {
+            tick();
+
+            Thread.sleep(wait);
+        }
+    }
 }

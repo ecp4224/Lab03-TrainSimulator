@@ -1,13 +1,16 @@
 package com.company.driver;
 
+import com.company.Station;
 import com.company.TrainRouteBuilder;
+
+import java.util.List;
 
 public class Main {
 
     public static void main(String[] args) {
         SimulationTicker ticker = new SimulationTicker();
 
-        TrainRouteBuilder.createBuilder(ticker)
+        List<Station> stations = TrainRouteBuilder.createBuilder(ticker)
                 .addOutboundStation("Heath")
                 .addStation("Back of the Hill")
                 .addStation("Riverway")
@@ -28,5 +31,13 @@ public class Main {
                 .addStation("Science Park")
                 .addInboundStation("Lechmere")
                 .buildStations();
+
+        ticker.addTickable(new PassengerCreator(stations)); //This adds random passengers to the trainline
+
+        try {
+            ticker.begin(50); //Tick every 50ms
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
     }
 }
