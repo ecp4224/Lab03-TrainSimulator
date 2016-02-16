@@ -84,7 +84,11 @@ public class TrainRouteBuilder {
     public Station[] buildInbound() {
         Station[] toReturn = new Station[inBoundStations.size()];
         for (int i = 0; i < inBoundStations.size(); i++) {
-            toReturn[i] = new Station(inBoundStations.get(i), true);
+            Station temp = new Station(inBoundStations.get(i), true);
+            if (cache.contains(temp)) {
+                temp = cache.get(cache.indexOf(temp));
+            }
+            toReturn[i] = temp;
         }
 
         return toReturn;
@@ -93,7 +97,12 @@ public class TrainRouteBuilder {
     public Station[] buildOutbound() {
         Station[] toReturn = new Station[outBoundStations.size()];
         for (int i = outBoundStations.size() - 1; i >= 0; i--) {
-            toReturn[toReturn.length - 1 - i] = new Station(outBoundStations.get(i), false);
+            Station temp = new Station(outBoundStations.get(i), false);
+            if (cache.contains(temp)) {
+                temp = cache.get(cache.indexOf(temp));
+            }
+
+            toReturn[toReturn.length - 1 - i] = temp;
         }
 
         return toReturn;

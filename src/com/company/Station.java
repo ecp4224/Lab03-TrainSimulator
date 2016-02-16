@@ -1,10 +1,6 @@
 package com.company;
 
-/**
- * Created by corpa on 2/10/2016.
- */
 public class Station implements StationInterface{
-
     private String name;
     private Train currentTrain;
     private boolean isInbound;
@@ -52,20 +48,13 @@ public class Station implements StationInterface{
 
         Station station = (Station) o;
 
-        if (isInbound != station.isInbound) return false;
-        if (!name.equals(station.name)) return false;
-        if (currentTrain != null ? !currentTrain.equals(station.currentTrain) : station.currentTrain != null)
-            return false;
-        return trainLine.equals(station.trainLine);
-
+        return isInbound == station.isInbound && name.equals(station.name);
     }
 
     @Override
     public int hashCode() {
         int result = name.hashCode();
-        result = 31 * result + (currentTrain != null ? currentTrain.hashCode() : 0);
         result = 31 * result + (isInbound ? 1 : 0);
-        result = 31 * result + trainLine.hashCode();
         return result;
     }
 

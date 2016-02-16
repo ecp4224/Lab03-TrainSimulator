@@ -35,7 +35,7 @@ public class Main {
         ticker.addTickable(new PassengerCreator(stations)); //This adds random passengers to the trainline
 
         try {
-            ticker.begin(50); //Tick every 50ms
+            ticker.begin(3000); //Tick every 50ms
         } catch (InterruptedException e) {
             e.printStackTrace();
         }

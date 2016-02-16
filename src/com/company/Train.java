@@ -1,7 +1,5 @@
 package com.company;
 
-import com.company.driver.PassengerCreator;
-
 import java.util.ArrayList;
 
 public class Train implements TrainInterface {
@@ -46,17 +44,22 @@ public class Train implements TrainInterface {
                 amountDroppedOff++;
             }
         }
-        System.out.println("Dropped off " + amountDroppedOff + " passengers at " + currentStation.getName());
+        if (amountDroppedOff > 0)
+            System.out.println("Dropped off " + amountDroppedOff + " passengers at " + currentStation.getName());
     }
 
     public void pickupPassengers() {
         int amountPickedUp = 0;
         while(!isFull()) {
+            if (currentStation.getTrainLine().isEmpty())
+                break;
+
             passengers.add(currentStation.getTrainLine().dequeue());
             numberOfPassengers++;
             amountPickedUp++;
         }
-        System.out.println("Picked up " + amountPickedUp + " passengers at " + currentStation.getName());
+        if (amountPickedUp > 0)
+            System.out.println("Picked up " + amountPickedUp + " passengers at " + currentStation.getName());
     }
 
     public boolean isFull() {
@@ -66,6 +69,11 @@ public class Train implements TrainInterface {
     @Override
     public void tick() {
         removePassengers();
+
+        if (route.isEndOfRoute()) {
+            route.switchRoute();
+        }
+
         System.out.print("Train moved from " + currentStation.getName());
         currentStation = route.gotoNextStation();
         System.out.print(" to " + currentStation.getName() + ".\n");
