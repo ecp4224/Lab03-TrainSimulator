@@ -14,7 +14,7 @@ public class Station implements StationInterface{
     }
 
     public String getName() {
-        return name + " (" + (isInbound ? "INBOUND" : "OUTBOUND") + ")";
+        return name;
     }
 
     public void setName(String name) {
