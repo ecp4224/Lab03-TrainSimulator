@@ -8,6 +8,7 @@ public class Queue<T> implements QueueInterface<T>{
     private T[] queue;
     private int frontIndex;
     private int backIndex;
+    private int sizeOfQueue;
     private static final int DEFAULT_CAPACITY = 50;
 
     public Queue() {
@@ -18,6 +19,7 @@ public class Queue<T> implements QueueInterface<T>{
         queue = (T[]) new Object[capacity+1];
         frontIndex = 0;
         backIndex = capacity;
+        sizeOfQueue = 0;
     }
 
     @Override
@@ -25,6 +27,7 @@ public class Queue<T> implements QueueInterface<T>{
         ensureCapacity();
         backIndex = (backIndex + 1) % queue.length;
         queue[backIndex] = newEntry;
+        sizeOfQueue++;
     }
 
     @Override
@@ -34,6 +37,7 @@ public class Queue<T> implements QueueInterface<T>{
             front = queue[frontIndex];
             queue[frontIndex] = null;
             frontIndex = (frontIndex + 1) %queue.length;
+            sizeOfQueue--;
         }
         return front;
     }
@@ -55,6 +59,10 @@ public class Queue<T> implements QueueInterface<T>{
     public void clear() {
         while(!isEmpty())
             dequeue();
+    }
+
+    public int getSizeOfQueue() {
+        return sizeOfQueue;
     }
 
     private void ensureCapacity() {

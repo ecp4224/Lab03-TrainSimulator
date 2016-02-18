@@ -23,8 +23,8 @@ public class PassengerCreator implements Tickable {
         if (System.currentTimeMillis() - lastAdd < MIN_WAIT_TIME)
             return;
         for (Station s : allStations) {
-            if (RANDOM.nextBoolean()) {
-                int passengerCount = RANDOM.nextInt(10) + 1;
+            //if (RANDOM.nextBoolean()) {
+                int passengerCount = RANDOM.nextInt(100) + 1;
                 for (int i = 0; i < passengerCount; i++) {
                     Passenger p = Passenger.createPassenger(s);
 
@@ -32,7 +32,7 @@ public class PassengerCreator implements Tickable {
                 }
 
                 //System.out.println("Added " + passengerCount + " passengers to the line at " + s.getName());
-            }
+            //}
         }
 
         lastAdd = System.currentTimeMillis();

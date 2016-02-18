@@ -3,6 +3,8 @@ package com.company;
 import java.util.*;
 
 public class SimpleTrainRoute implements TrainRoute {
+
+    private List<Station> stationsList = new ArrayList<>();
     private Queue<Station> stations;
     private TrainRouteBuilder builder;
     private boolean isGoingOutbound;
@@ -27,6 +29,7 @@ public class SimpleTrainRoute implements TrainRoute {
 
             if (build) {
                 this.stations.enqueue(stations[startingIndex]);
+                this.stationsList.add(stations[startingIndex]);
             }
         }
     }
@@ -38,6 +41,7 @@ public class SimpleTrainRoute implements TrainRoute {
 
     @Override
     public Station gotoNextStation() {
+        stationsList.remove(0);
         return stations.dequeue();
     }
 
@@ -57,6 +61,10 @@ public class SimpleTrainRoute implements TrainRoute {
         List<Station> all = builder.getAllStations();
         Random random = new Random();
 
-        return all.get(random.nextInt(all.size()));
+        if(!isEndOfRoute()) {
+            return stationsList.get(random.nextInt(stationsList.size()));
+        } else {
+            return all.get(random.nextInt(all.size()));
+        }
     }
 }

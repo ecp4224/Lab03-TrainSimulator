@@ -15,6 +15,7 @@ public class Train implements TrainInterface {
     private int capacity;//Number of passengers allowed in train
 
     private TrainRoute route;
+    private int trainLoopNumber = 0;
 
     public Train(Station currentStation, int capacity, TrainRoute route) {
         this.currentStation = currentStation;
@@ -43,7 +44,7 @@ public class Train implements TrainInterface {
         Iterator<Passenger> iterator = getPassengers().iterator();
         while (iterator.hasNext()) {
             Passenger p = iterator.next();
-            if (p.getDestinationStation().equals(currentStation)) {
+            if (p.getDestinationStation().getName().equals(currentStation.getName())) {
                 iterator.remove();
                 numberOfPassengers--;
                 amountDroppedOff++;
@@ -79,12 +80,16 @@ public class Train implements TrainInterface {
         if (route.isEndOfRoute()) {
             route.switchRoute();
         }
-
-        System.out.print("Train moved from " + currentStation.getName());
+        if(trainLoopNumber > 0)
+            System.out.print("Train moved from " + currentStation.getName());
         currentStation = route.gotoNextStation();
-        System.out.print(" to " + currentStation.getName() + ".\n");
+        if(trainLoopNumber > 0)
+            System.out.print(" to " + currentStation.getName() + ".\n");
         nextStation = getTrainRoute().nextStation();
         pickupPassengers();
+        System.out.println("Passengers on train: " + numberOfPassengers);
+        System.out.println("Passengers in line for train: " + currentStation.getTrainLine().getSizeOfQueue());
+        trainLoopNumber++;
     }
 
     public TrainRoute getTrainRoute() {
