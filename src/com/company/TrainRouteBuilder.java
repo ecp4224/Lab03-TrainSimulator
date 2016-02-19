@@ -7,7 +7,7 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Random;
 
-public class TrainRouteBuilder {
+public class TrainRouteBuilder implements TrainRouteBuilderInterface{
     private static final Random RANDOM = new Random();
 
     //Create 2 separate array lists for both inbound side and outbound side

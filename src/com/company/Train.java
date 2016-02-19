@@ -80,15 +80,21 @@ public class Train implements TrainInterface {
         if (route.isEndOfRoute()) {
             route.switchRoute();
         }
+
         if(trainLoopNumber > 0)
             System.out.print("Train moved from " + currentStation.getName());
         currentStation = route.gotoNextStation();
         if(trainLoopNumber > 0)
             System.out.print(" to " + currentStation.getName() + ".\n");
+
         nextStation = getTrainRoute().nextStation();
         pickupPassengers();
-        System.out.println("Passengers on train: " + numberOfPassengers);
-        System.out.println("Passengers in line for train: " + currentStation.getTrainLine().getSizeOfQueue());
+
+        if(trainLoopNumber > 0) {
+            System.out.println("Passengers on train: " + numberOfPassengers);
+            System.out.println("Passengers in line for train: " + currentStation.getTrainLine().getSizeOfQueue());
+        }
+
         trainLoopNumber++;
     }
 

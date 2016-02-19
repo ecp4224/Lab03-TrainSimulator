@@ -3,7 +3,7 @@ package com.company.driver;
 import java.util.LinkedList;
 import java.util.List;
 
-public class SimulationTicker {
+public class SimulationTicker implements SimulationTickerInterface {
     private List<Tickable> tickables = new LinkedList<Tickable>();
 
     public  void addTickable(Tickable tickable) {

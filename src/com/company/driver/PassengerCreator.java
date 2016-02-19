@@ -1,12 +1,13 @@
 package com.company.driver;
 
 import com.company.Passenger;
+import com.company.PassengerInterface;
 import com.company.Station;
 
 import java.util.List;
 import java.util.Random;
 
-public class PassengerCreator implements Tickable {
+public class PassengerCreator implements Tickable, PassengerCreatorInterface {
 
     private static final Random RANDOM = new Random();
     private static final long MIN_WAIT_TIME = 20000;
