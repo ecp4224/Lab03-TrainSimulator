@@ -41,6 +41,7 @@ public class SimpleTrainRoute implements TrainRoute {
 
     @Override
     public Station gotoNextStation() {
+
         stationsList.remove(0);
         return stations.dequeue();
     }

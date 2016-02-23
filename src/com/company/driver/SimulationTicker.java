@@ -1,5 +1,7 @@
 package com.company.driver;
 
+import com.company.Day;
+
 import java.util.LinkedList;
 import java.util.List;
 
@@ -12,6 +14,7 @@ public class SimulationTicker implements SimulationTickerInterface {
 
     public void tick() {
         for (Tickable t : tickables) {
+
             t.tick();
         }
     }
@@ -19,7 +22,6 @@ public class SimulationTicker implements SimulationTickerInterface {
     public void begin(long wait) throws InterruptedException {
         while (true) {
             tick();
-
             Thread.sleep(wait);
         }
     }
