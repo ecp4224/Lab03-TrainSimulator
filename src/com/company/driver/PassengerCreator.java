@@ -1,5 +1,6 @@
 package com.company.driver;
 
+import com.company.Day;
 import com.company.Passenger;
 import com.company.PassengerInterface;
 import com.company.Station;
@@ -15,8 +16,11 @@ public class PassengerCreator implements Tickable, PassengerCreatorInterface {
     private List<Station> allStations;
     private long lastAdd;
 
-    public PassengerCreator(List<Station> allStations) {
+    private Day day;
+
+    public PassengerCreator(List<Station> allStations, Day day) {
         this.allStations = allStations;
+        this.day = day;
     }
 
     @Override
@@ -24,8 +28,12 @@ public class PassengerCreator implements Tickable, PassengerCreatorInterface {
         if (System.currentTimeMillis() - lastAdd < MIN_WAIT_TIME)
             return;
         for (Station s : allStations) {
-            //if (RANDOM.nextBoolean()) {
-                int passengerCount = RANDOM.nextInt(100) + 1;
+            int passengerCount;
+            if(day.isRushHour()) {
+                passengerCount = RANDOM.nextInt(120) + 1;
+            } else {
+                passengerCount = RANDOM.nextInt(40) + 1;
+            }
                 for (int i = 0; i < passengerCount; i++) {
                     Passenger p = Passenger.createPassenger(s);
 

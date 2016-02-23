@@ -7,6 +7,7 @@ import java.util.List;
 
 public class SimulationTicker implements SimulationTickerInterface {
     private List<Tickable> tickables = new LinkedList<Tickable>();
+    private Day day = new Day();
 
     public  void addTickable(Tickable tickable) {
         tickables.add(tickable);
@@ -14,7 +15,6 @@ public class SimulationTicker implements SimulationTickerInterface {
 
     public void tick() {
         for (Tickable t : tickables) {
-
             t.tick();
         }
     }

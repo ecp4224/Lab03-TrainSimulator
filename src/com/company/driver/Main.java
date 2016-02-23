@@ -1,5 +1,6 @@
 package com.company.driver;
 
+import com.company.Day;
 import com.company.Station;
 import com.company.TrainRouteBuilder;
 
@@ -9,7 +10,7 @@ public class Main {
 
     public static void main(String[] args) {
         SimulationTicker ticker = new SimulationTicker();
-
+        Day day = new Day();
         List<Station> stations = TrainRouteBuilder.createBuilder(ticker)
                 .addOutboundStation("Heath")
                 .addStation("Back of the Hill")
@@ -32,10 +33,11 @@ public class Main {
                 .addInboundStation("Lechmere")
                 .buildStations();
 
-        ticker.addTickable(new PassengerCreator(stations)); //This adds random passengers to the trainline
+        ticker.addTickable(new PassengerCreator(stations, day)); //This adds random passengers to the trainline
 
         try {
             ticker.begin(3000); //Tick every 50ms
+            day.progressDay();
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
