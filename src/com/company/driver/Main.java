@@ -11,6 +11,7 @@ public class Main {
     public static void main(String[] args) {
         SimulationTicker ticker = new SimulationTicker();
         Day day = new Day();
+
         List<Station> stations = TrainRouteBuilder.createBuilder(ticker)
                 .addOutboundStation("Heath")
                 .addStation("Back of the Hill")

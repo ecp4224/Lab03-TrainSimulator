@@ -9,6 +9,9 @@ import java.util.List;
  */
 public interface PassengerCreatorInterface{
 
+    /**
+     * Ticks the passenger creator, creates passenger objects
+     */
     public void tick();
 
 }
