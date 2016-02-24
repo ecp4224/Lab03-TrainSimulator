@@ -25,7 +25,7 @@ public class SwingGUI extends Canvas {
                 while (true) {
                     render();
                     try {
-                        Thread.sleep(16);
+                        Thread.sleep(1000);
                     } catch (InterruptedException e) {
                         e.printStackTrace();
                     }
@@ -38,8 +38,13 @@ public class SwingGUI extends Canvas {
         Graphics g = bf.getDrawGraphics();
         BufferedImage temp = new BufferedImage(getWidth(), getHeight(), BufferedImage.TYPE_INT_ARGB);
 
-        Graphics tg = temp.createGraphics();
+        Graphics tg = temp.getGraphics();
+
+        tg.setColor(Color.WHITE);
+        tg.fillRect(0, 0, 1024, 720);
+
         renderStations(tg);
+        renderPassengers(tg);
 
         g.drawImage(temp, 0, 0, null);
 
@@ -88,10 +93,38 @@ public class SwingGUI extends Canvas {
         int toAdd = (maxX - minX) / (inbound.length - 1);
         for (int i = 0; i < inbound.length; i++) {
             int x = minX + (i * toAdd);
-            int y = 190;
+            int y = 200;
             Station s = inbound[i];
-            for (int z = 0; z < s.getTrainLine().)
+            for (int z = 0; z < s.getTrainLine().getSizeOfQueue(); z++) {
+                y -= 8;
+                drawPassenger(x, y, g);
+
+                if (z % 22 == 0 && z != 0) {
+                    y = 200;
+                    x += 8;
+                }
+            }
         }
+
+        toAdd = (maxX - minX) / (outbound.length - 1);
+        for (int i = 0; i < outbound.length; i++) {
+            int x = minX + (i * toAdd);
+            int y = 420;
+            Station s = outbound[i];
+            for (int z = 0; z < s.getTrainLine().getSizeOfQueue(); z++) {
+                y += 8;
+                drawPassenger(x, y, g);
+
+                if (z % 22 == 0 && z != 0) {
+                    y = 420;
+                    x += 8;
+                }
+            }
+        }
+    }
+
+    private void drawPassenger(int x, int y, Graphics g) {
+        g.fillRect(x + (4 / 2), y + (4 / 2), 4, 4);
     }
 
     private void drawStation(int x, int y, Graphics g) {
