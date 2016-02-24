@@ -39,6 +39,7 @@ public class Main {
                 .buildStations();
 
         ticker.addTickable(new PassengerCreator(stations, day)); //This adds random passengers to the trainline
+        ticker.addTickable(day);
 
         JFrame frame = new JFrame("Train Simulator");
         frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
@@ -52,7 +53,6 @@ public class Main {
 
         try {
             ticker.begin(3000); //Tick every 50ms
-            day.progressDay();
         } catch (InterruptedException e) {
             e.printStackTrace();
         }

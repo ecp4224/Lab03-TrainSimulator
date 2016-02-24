@@ -67,7 +67,7 @@ public class TrainRouteBuilder implements TrainRouteBuilderInterface{
             TrainRoute inBoundRoute = new SimpleTrainRoute(this, i, false);
 
             Station inboundStation = inBoundRoute.gotoNextStation(); //Pop first station
-            Train inBoundTrain = new Train(inboundStation, RANDOM.nextInt(30) + 10, inBoundRoute);
+            Train inBoundTrain = new Train(inboundStation, RANDOM.nextInt(100) + 10, inBoundRoute);
 
             inboundStation.setCurrentTrain(inBoundTrain);
 
@@ -78,7 +78,7 @@ public class TrainRouteBuilder implements TrainRouteBuilderInterface{
             TrainRoute outBoundRoute = new SimpleTrainRoute(this, i, true);
 
             Station outboundStation = outBoundRoute.gotoNextStation(); //Pop first station
-            Train outBoundTrain = new Train(outboundStation, RANDOM.nextInt(30) + 10, outBoundRoute);
+            Train outBoundTrain = new Train(outboundStation, RANDOM.nextInt(100) + 10, outBoundRoute);
 
             outboundStation.setCurrentTrain(outBoundTrain);
 

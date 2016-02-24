@@ -1,9 +1,12 @@
 package com.company;
 
+import com.company.driver.Tickable;
+
 /**
  * Created by corpa on 2/22/2016.
  */
-public class Day implements DayInterface{
+public class Day implements DayInterface, Tickable
+{
 
     private int timeOfDay;
     private int dayNumber;
@@ -32,5 +35,10 @@ public class Day implements DayInterface{
 
     public boolean isRushHour(){
         return this.timeOfDay == 700 || this.timeOfDay == 600 || this.timeOfDay == 1700 || this.timeOfDay == 1800;
+    }
+
+    @Override
+    public void tick() {
+        this.progressDay();
     }
 }
